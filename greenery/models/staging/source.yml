@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+
+  - name: src_postgres # name of the source 
+    schema: public # this is the schema our raw data lives in
+    database: dbt # this is the name of our database
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+
+    tables:
+      - name: addresses
+        description: Contains addresses of each user in users table
+      
+      - name: events
+        loaded_at_field: created_at
+        description: Contains logs of the events created by users of Greenery i.e checkout, page_view, add_to_cart
+      
+      - name: order_items
+        description: Contains quantities of specific items that were ordered
+
+      - name: orders
+        loaded_at_field: created_at
+        description: Contains all dimensions relevant to an order i.e. order_cost, shipping_cost
+      
+      - name: products
+        description: Contains name, price, and inventory for each product stocked by Greenery
+
+      - name: promos
+        description: Contains discount amount and status of each promo offered by Greenery
+      
+      - name: users
+        loaded_at_field: created_at
+        description: Contains demographic inormation about each Greenry user

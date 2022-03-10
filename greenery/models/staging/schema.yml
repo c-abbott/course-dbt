@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: stg_addresses
+    description: Contains addresses of each user in users table
+    columns:
+      - name: address_id
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_events
+    description: Contains logs of the events created by users of Greenery i.e checkout, page_view, add_to_cart
+    columns:
+      - name: event_id
+        tests:
+          - not_null
+          - unique
+      - name: session_id
+        tests:
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+      
+  - name: stg_order_items
+    description: Contains quantities of specific items that were ordered
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+      - name: quantity
+        tests:
+          - positive_values
+    
+  - name: stg_orders
+    description: Contains all dimensions relevant to an order i.e. order_cost, shipping_cost
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+  
+  - name: stg_products
+    description: Contains name, price, and inventory for each product stocked by Greenery
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_promos
+    description: Contains discount amount and status of each promo offered by Greenery
+    columns:
+      - name: promo_id
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_users
+    description: Contains demographic inormation about each Greenry user
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+    
