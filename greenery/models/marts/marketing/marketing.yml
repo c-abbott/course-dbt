@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: int_user_orders
+    description: An intermediate join between relevant order events and user dimensions.
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: order_total
+        tests:
+          - not_null
+          - positive_values
+      - name: status
+        tests:
+          - not_null
+      - name: promo_discount_rate
+        tests:
+          - positive_values
+  - name: fct_user_orders
+    description: Aggregated data for each user and order counting how may items were in the order as well as the order's value in USD.
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+      - name: order_created_date
+        tests:
+          - not_null
+      - name: number_of_items
+        tests:
+          - not_null
+          - positive_values
+      - name: order_amount
+        tests:
+          - not_null
+          - positive_values
