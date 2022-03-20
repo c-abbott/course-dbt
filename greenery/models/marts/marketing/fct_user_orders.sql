@@ -11,7 +11,7 @@ select
     uo.order_created_date,
 
     count(distinct(oi.quantity)) as number_of_items,
-    sum(uo.order_total) as order_amount
+    sum(uo.order_total) as order_amount_usd
 from
     {{ ref('int_user_orders') }} uo
 join

@@ -38,7 +38,7 @@ models:
         tests:
           - not_null
           - positive_values
-      - name: order_amount
+      - name: order_amount_usd
         tests:
           - not_null
           - positive_values
