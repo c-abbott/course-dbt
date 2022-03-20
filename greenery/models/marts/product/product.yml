@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: int_session_length
+    description: For each session, when did the first and last event take place?
+    columns:
+      - name: session_id
+        tests:
+          - not_null
+          - unique
+      - name: first_event
+        tests:
+          - not_null
+      - name: last_event
+        tests:
+          - not_null
+
+  - name: int_user_session_activity
+    description: A table tracking web page activity on Greenery for each session and user.
+    columns:
+      - name: session_id
+        tests:
+          - not_null
+      - name: user_id
+        tests:
+          - not_null      
+  
+  - name: fct_user_sessions
+    description: A table tracking webpage activity for each session but now joined with many user dimensions.
+    columns:
+      - name: session_id
+        tests:
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+      - name: session_length_minutes
+        tests:
+          - not_null
+          - positive_values
+
