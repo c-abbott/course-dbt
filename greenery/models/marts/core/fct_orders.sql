@@ -22,6 +22,7 @@ select
     o.shipping_service,
     o.estimated_delivery_at,
     o.delivered_at as order_delivered_at,
+    age(o.delivered_at, o.created_at) as days_to_deliver,
     o.status
 from
     {{ ref('stg_orders') }} as o
