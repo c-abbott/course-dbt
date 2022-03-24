@@ -15,7 +15,7 @@ sessions_w_purchase as (
 */
 
 select
-    count(distinct swp.session_id) / count(distinct us.session_id) as conversion_rate
+    count(distinct swp.session_id)::float / count(distinct us.session_id)::float as conversion_rate
 from
     user_sessions as us
 left join

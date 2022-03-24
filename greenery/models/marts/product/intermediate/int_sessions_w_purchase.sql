@@ -17,4 +17,4 @@ select
 from
     {{ ref('fct_user_sessions')}} as us
 where
-    checkout = 1
+    checkout = 1 -- purchase and checkout are equivalent events
