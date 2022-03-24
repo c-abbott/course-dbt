@@ -14,6 +14,7 @@ sessions_w_purchase as (
 
 */
 
+-- TO DO: Insert into this table every hour/day/week to track metric over time
 select
     count(distinct swp.session_id)::float / count(distinct us.session_id)::float as conversion_rate
 from
@@ -22,13 +23,3 @@ left join
     sessions_w_purchase as swp
 using
     (session_id)
-
-
-
-
-/* 
-   
-    conversion rate by product := 
-    of unique sessions with a purchase event of that product / total number of unique sessions that viewed that product 
-
-*/
