@@ -22,6 +22,7 @@ user_session_activity as (
 select
     usa.session_id,
     usa.user_id,
+    usa.product_id,
     u.first_name,
     u.last_name,
     u.email,
