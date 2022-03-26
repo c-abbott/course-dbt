@@ -8,7 +8,7 @@ sessions_w_purchase as (
 ),
 
 events as (
-    select * from {{ ref('stg_events') }}
+    select * from {{ ref('fct_events') }}
 ),
 
 products as (
