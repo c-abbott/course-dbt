@@ -3,10 +3,21 @@
 ### Q1a: What is our overall conversion rate?
 
 ```sql
-    select avg(conversion_rate) from dbt_callum_a.conversions_by_product
+with sessions as (
+  select
+    sum(case when checkout = 1 then 1 else 0 end) as purchase_sessions,
+    count(distinct session_id) as total_sessions
+  from
+    dbt_callum_a.fct_user_sessions
+)
+
+select
+  round(purchase_sessions::numeric / total_sessions::numeric, 4) as conversion_rate
+from
+  sessions
 ```
 
-- Answer: 46.9%
+- Answer: 62.5%
 
 
 ### Q1b: What is our conversion rate by product?
