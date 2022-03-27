@@ -48,4 +48,21 @@
 |58b575f2-2192-4a53-9d21-df9a0c14fc25|Angel Wings Begonia|61        |24             |0.3934         |
 |4cda01b9-62e2-46c5-830f-b7f262a58fb1|Pothos             |61        |21             |0.3443         |
 
+### Q2: Create a macro to simplify part of a model(s).
+
+The macro I created can be found in the `macros` folder under the name `agg_by_col.sql` which aggregates for each distinct value in a specified column. I use this in the `int_user_session_activity` model to aggregate by session events. I also created a macro in the macros folder called `grant_role.sql` that I used to call in the post hooks to grant acess to reporting.
+
+
+### Q3: Add a post hook to your project to apply grants to the role “reporting”.
+
+See `dbt_project.yml` file.
+
+### Q4: Install a package (i.e. dbt-utils, dbt-expectations) and apply one or more of the macros to your project.
+
+I was fairly light on this. I mainly used the `dbt-utils.group_by` functionality where I thought was appropriate. I'll most likely tryout `codegen` next week,
+
+### Q5: Show (using dbt docs and the model DAGs) how you have simplified or improved a DAG using macros and/or dbt packages.
+
+See slack
+
 
