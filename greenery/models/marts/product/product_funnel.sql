@@ -96,7 +96,8 @@ final as (
         num_sessions,
         num_sessions_level_above,
         level_conversion,
-        coalesce(lag(level_conversion) OVER(), 1) - level_conversion as dropoff_rate
+        coalesce(lag(level_conversion) OVER(), 1) - level_conversion as drop_off_relative,
+        1 - level_conversion as drop_off_absolute
     from
         get_conversions
 )
