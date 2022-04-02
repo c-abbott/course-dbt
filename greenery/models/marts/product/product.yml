@@ -38,4 +38,31 @@ models:
         tests:
           - not_null
           - positive_values
+  
+  - name: conversions_by_product
+    description: Tracking conversion rates across Greenery's product catalog
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+  
+  - name: product_funnel
+    description: Tracking session volume through product funnel.
 
+exposures:
+  
+  - name: Product Funnel Dashboard
+    type: dashboard
+    maturity: low
+    # url: https://bi.tool/dashboards/1
+    description: >
+      Tracking the volume of users moving through Greenery's product
+      funnel which levels have the largest drop points. 
+    
+    depends_on:
+      - ref('product_funnel')
+      
+    owner:
+      name: Callum
+      email: callum@sidekickhealth.com
