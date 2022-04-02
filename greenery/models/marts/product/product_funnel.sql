@@ -68,7 +68,7 @@ funnel as (
         sessions
 ),
 
-funnel_summary as (
+get_previous_level as (
     select
         funnel_level_label,
         funnel_level_id,
@@ -78,7 +78,7 @@ funnel_summary as (
         funnel
 ),
 
-final as (
+get_conversions as (
     select
         funnel_level_label,
         funnel_level_id,
@@ -86,7 +86,19 @@ final as (
         num_sessions_level_above,
         round(num_sessions::numeric / num_sessions_level_above::numeric, 2) as level_conversion
     from
-        funnel_summary
+        get_previous_level
+),
+
+final as (
+    select
+        funnel_level_label,
+        funnel_level_id,
+        num_sessions,
+        num_sessions_level_above,
+        level_conversion,
+        coalesce(lag(level_conversion) OVER(), 1) - level_conversion as dropoff_rate
+    from
+        get_conversions
 )
 
 select * from final
